@@ -1,8 +1,10 @@
 def _impl(ctx):
     ctx.action(
-        inputs = [ctx.executable._build_tools],
+        executable = ctx.executable._build_tools,
+        arguments = [
+            ctx.outputs.text.path,
+        ],
         outputs = [ctx.outputs.text],
-        command = "{} {}".format(ctx.executable._build_tools.path, ctx.outputs.text.path),
     )
 
 example = rule(
